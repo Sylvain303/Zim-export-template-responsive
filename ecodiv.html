@@ -1,0 +1,97 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<title>Your website title here</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    <script type='text/javascript' src='http://code.jquery.com/jquery-1.7.1.js'></script>
+    <script type='text/javascript' src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <!-- different stylesheets for different screen sizes. Adapt to your likening -->
+    <link rel="stylesheet" media="screen and (min-width: 741px)" href=[% resource('style.css') %]>
+    <link rel="stylesheet" media="screen and (max-width: 740px)" href=[% resource('style_mobile.css') %]>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin,greek,latin-ext' rel='stylesheet' type='text/css'> -->
+	<![if !IE]>
+</head>
+<body>
+<div class="container">
+    <div data-role="page" class="ui-responsive-panel">
+        <div data-role="header" data-position="fixed">
+            <a href="#nav-panel" data-icon="bars">Table of content</a>
+            <!-- Header / title. You can leave it empty if you wish -->
+            <h1>My website title</h1>
+            <!-- Button with link to your website. Left empty below 
+            The button is created using the logo.png file in the 
+            ecodiv folder (which will be copied to the _resource folder
+            when exported as webpage). You can change the image or 
+            change the link below to point to different image //-->
+            <a href="" target="_blank">
+                <img src=[% resource('zim_logo.png') %] style="border-style:none" align="right"></a>
+        </div>
+        <noscript>
+            <div style="border: 1px solid purple; padding: 10px">
+                <span style="color:red">This page is best viewed with JavaScript enabled!</span>
+            </div>
+        </noscript>
+        <div data-role="content">
+            [% IF page.properties.type=='namespace-index' -%]
+                <h1>Document Index</h1>
+                [%- ELSE -%]
+                <h1>[% page.heading %]</h1>
+                [%- END %]
+                [% page.body %]
+                <br></br>
+                <hr class='footnotes'>
+                <span class="backlinks">
+                    Backlinks:
+                    [% IF page.backlinks -%]
+                    [%- FOREACH link=page.backlinks -%]
+                    <a href='[% url(link) %]'>[% link.name %]</a>
+                    [%- END -%]
+                    [%- ELSE -%]
+                    none
+                    [%- END %]
+                </span>
+            <script>
+                $( "img" ).wrap( "<div class='imgcenter'></div>" );
+            </script>
+
+        </div>
+        <div data-role="panel" data-position-fixed="true" data-display="overlay" data-theme="a" id="nav-panel">
+            <div style="display:inline-block;">
+                <!-- If you want to place your logo, otherwise, delete
+                the next div. Make sure to fill in the link between the
+                quotation marks after href if you want
+                the logo to link to another page or website //-->
+                <div id="logos" align="center">
+                    <a title="your title" href="" target="_blank">
+                        <img src=[% resource('zim_logo.png') %] style="border-style:none" align="right"></a>
+                </div>
+                <br></br>
+                <br></br>
+                <div>
+                    <script>
+                      (function() {
+                        var cx = '002630588966656095947:vimhntpd3ny';
+                        var gcse = document.createElement('script');
+                        gcse.type = 'text/javascript';
+                        gcse.async = true;
+                        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                            '//www.google.com/cse/cse.js?cx=' + cx;
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(gcse, s);
+                      })();
+                    </script>
+                    <!-- Optional, botton which brings the user to your
+                    contact form (fill in the link between the quoation
+                    marks after href. Otherwise, delete the next line) //-->
+                    <a title="Contact us" href="" data-role="button" target="_blank">Contact us</a>
+                    [% pageindex() %]
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
